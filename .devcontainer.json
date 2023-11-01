@@ -1,4 +1,13 @@
 {
     "name": "Futhark",
-    "build": { "dockerfile": "Dockerfile" }
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"DIKU.futhark-vscode"
+			]
+		}
+	}
 }

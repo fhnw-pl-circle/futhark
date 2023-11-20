@@ -1,1 +1,15 @@
-*.py
+/*.py
+/*.c
+/*.actual
+/*.expected
+
+/__pycache__/
+/data/
+
+/language
+/language-img/
+/testing
+/dotprod
+/raytrace
+/matmul
+

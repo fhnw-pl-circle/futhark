@@ -12,8 +12,8 @@ def normalize (v: vec3): vec3 =
 
 def ray_origin: vec3 = {x = 0, y = 0, z = 1}
 def sphere_radius: f32 = 0.5
-def lightDir: vec3 = normalize {x = -1, y = -1, z = -1}
-def lightDirNeg: vec3 = mul lightDir (-1.0)
+def light_dir: vec3 = normalize {x = -1, y = -1, z = -1}
+def light_dir_neg: vec3 = mul light_dir (-1.0)
 
 def bg: item = [0, 0, 0]
 def sphere: item = [1, 0, 1]
@@ -27,11 +27,11 @@ def generate cols rows n m: item =
 	let c = (dot ray_origin ray_origin) - sphere_radius * sphere_radius
     let discriminant = b * b - 4.0 * a * c
     in if discriminant < 0.0 then [0, 0, 0] else
-        let closestT = (-b - f32.sqrt discriminant) / (2.0 * a)
+        let closest_t = (-b - f32.sqrt discriminant) / (2.0 * a)
         let _t0 = (-b + f32.sqrt discriminant) / (2.0 * a) -- currently unused
-        let hitPoint = add ray_origin (mul ray_direction closestT)
-        let normal = normalize hitPoint
-        let lightIntensity = f32.max (dot normal lightDirNeg) 0.0
-        in [lightIntensity, 0, lightIntensity]
+        let hit_point = add ray_origin (mul ray_direction closest_t)
+        let normal = normalize hit_point
+        let light_intensity = f32.max (dot normal light_dir_neg) 0.0
+        in [light_intensity, 0, light_intensity]
 
 def main cols rows: [][]item = tabulate_2d cols rows (generate cols rows)
